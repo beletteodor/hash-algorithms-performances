@@ -6,7 +6,11 @@ HASH = \
 	sdbm_words \
 	sdbm_numbers \
 	lose_words \
-	lose_numbers
+	lose_numbers \
+	murmur2_words \
+	murmur2_numbers \
+	fnv1_words \
+	fnv1_numbers
 
 CC = g++
 CFLAGS = -Wall -Wextra -O3
@@ -36,6 +40,18 @@ lose_words: lose_words.cpp
 
 lose_numbers: lose_numbers.cpp
 		$(CC) $(CFLAGS) $^ -o $@ -lpthread
+		
+fnv1_words: fnv1_words.cpp
+	$(CC) $(CFLAGS) $^ -o $@ -lcrypto -lpthread
+
+fnv1_numbers: fnv1_numbers.cpp
+	$(CC) $(CFLAGS) $^ -o $@ -lcrypto -lpthread
+	
+murmur2_words: murmur2_words.cpp
+		$(CC) $(CFLAGS) $^ -o $@ -lcrypto -lpthread
+
+murmur2_numbers: murmur2_numbers.cpp
+		$(CC) $(CFLAGS) $^ -o $@ -lcrypto -lpthread
 
 .PHONY: clean
 
